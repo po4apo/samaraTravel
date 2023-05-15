@@ -15,6 +15,13 @@ class PlaceItemSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
+        fields = '__all__'
+
+
+
+class UserSerializerForFeedBack(serializers.ModelSerializer):
+    class Meta:
+        model = User
         fields = ['pk', 'first_name', 'last_name']
 
 
@@ -26,7 +33,7 @@ class PlaceItemSerializerForFeedBack(serializers.ModelSerializer):
 
 
 class FeedBackSerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True)
+    user = UserSerializerForFeedBack(read_only=True)
     place = PlaceItemSerializerForFeedBack(read_only=True)
 
     class Meta:
